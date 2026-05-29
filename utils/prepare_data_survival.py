@@ -17,7 +17,7 @@ data = data[data['time_days'] >= 0]
 data = data.dropna(subset=['time_days'])
 
 client_counts = data['cust_number'].value_counts()
-treshold = client_counts.quantile(0.90)
+treshold = client_counts.quantile(0.9)
 
 key_enterprises = client_counts[client_counts > treshold].index
 data['segment'] = np.where(data['cust_number'].isin(key_enterprises), 'BE', 'SME')
