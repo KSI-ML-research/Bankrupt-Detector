@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-df = pd.read_csv('../data/dataset_survival.csv')
+df = pd.read_csv('data/dataset_survival.csv')
 df.drop_duplicates(inplace=True)
 
 df['due_in_date_dt'] = pd.to_datetime(df['due_in_date'])
@@ -18,4 +18,10 @@ df['avg_delay_customer'] = df['cust_number'].map(customer_avg_delay).fillna(0)
 
 df.drop(columns=['due_in_date_dt', 'document_create_date_dt', 'baseline_create_date_dt'], inplace=True)
 
-df.to_csv('../data/dataset_survclean.csv', index=False)
+
+#agregacja rzadko wystepujacych cech do other, zeby zachowac stabilnosc modelu Coxa
+terms_counts = df['cust_payment_terms'].value_counts()
+rare_terms = terms_counts[terms_counts < 50].index
+df.loc[df['cust_payment_terms'].isin(rare_terms), 'cust_payment_terms'] = 'OTHER'
+
+df.to_csv('data/dataset_survclean.csv', index=False)
