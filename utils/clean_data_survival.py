@@ -12,11 +12,12 @@ df['baseline_create_date_dt'] = pd.to_datetime(df['baseline_create_date'], dayfi
 df['days_to_due'] = (df['due_in_date_dt'] - df['document_create_date_dt']).dt.days
 df['invoice_age'] = (df['due_in_date_dt'] - df['baseline_create_date_dt']).dt.days
 
+df = df.sort_values('document_create_date_dt')
 
-customer_avg_delay = df.dropna(subset=['days_late']).groupby('cust_number')['days_late'].mean()
-df['avg_delay_customer'] = df['cust_number'].map(customer_avg_delay).fillna(0)
 
-df.drop(columns=['due_in_date_dt', 'document_create_date_dt', 'baseline_create_date_dt'], inplace=True)
+df['avg_delay_customer'] = df.groupby('cust_number')['days_late'].transform(lambda x: x.shift().expanding().mean()).fillna(0)
+
+df.drop(columns=['due_in_date_dt', 'baseline_create_date_dt'], inplace=True)
 
 
 #agregacja rzadko wystepujacych cech do other, zeby zachowac stabilnosc modelu Coxa
