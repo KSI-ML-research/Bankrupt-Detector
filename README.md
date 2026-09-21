@@ -1,6 +1,6 @@
 # Bankrupt-Detector
 
-Research project predicting the risk of late B2B invoice payments as an early signal of SME cash-flow / liquidity risk, based on invoice data and customer payment history.
+Research project predicting the risk of late B2B invoice payments as an early signal of enterprise cash-flow / liquidity risk, based on invoice data and customer payment history.
 
 **Project in progress.** Done: EDA, concept drift analysis, leakage-safe historical customer features, baseline (logistic regression), XGBoost + SHAP + Optuna tuning, survival analysis (Kaplan-Meier, Cox PH). Next up: Random Survival Forest and cash-flow forecasting.
 
