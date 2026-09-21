@@ -4,7 +4,7 @@ Research project predicting the risk of late B2B invoice payments as an early si
 
 **Project in progress.** Done: EDA, concept drift analysis, leakage-safe historical customer features, baseline (logistic regression), XGBoost + SHAP + Optuna tuning, survival analysis (Kaplan-Meier, Cox PH). Next up: Random Survival Forest and cash-flow forecasting.
 
-## Project vision
+## Objective
 
 The end goal is a system that answers: *will the company face a cash-flow gap in the next 30/60/90 days?* It consists of three layers: classification (will a given invoice be paid late), survival analysis (how many days the payment will be delayed and with what probability), and cash-flow forecasting (aggregating per-invoice risk into a company-level balance forecast).
 
