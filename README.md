@@ -20,7 +20,8 @@ The end goal is a system that answers: *will the company face a cash-flow gap in
 | Logistic regression | ROC-AUC | 0.72 |
 | XGBoost + Optuna | ROC-AUC | 0.80 |
 | Kaplan-Meier (BE vs SME) | log-rank p-value | 2.97e-29 |
-| Cox PH | C-index (test) | 0.45 – suggests the model's assumptions are violated, motivating the move to RSF |
+| Cox PH | C-index (test, 80/20 split) | 0.45 |
+| Cox PH | C-index (test, 50/50 split) | 0.61 |
 
 ## Repository structure
 
